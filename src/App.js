@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import './Utils.css'
+import BtNavbar from './component/BtNavbar';
+import Content from './component/Content';
+import TpNavbar from './component/TpNavbar';
+
+// import BtNavigation from '../learning/BtNavigation';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container my-2'>
+   <TpNavbar/>
+<BtNavbar/>
+<Content/>
     </div>
   );
 }

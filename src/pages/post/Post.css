@@ -1,0 +1,59 @@
+.post{
+    padding: 0 10px;
+}
+.post-inputs label,span{
+display: block;
+padding: 4px;
+font-weight: bold;
+font-size: 1.2rem;
+
+}
+.Tag label,Tag span{
+    display: inline !important;
+    padding: 1px !important;
+}
+.Tag{
+    margin-top: 8px;
+}
+.post-inputs input{
+border: 2px solid #A149FA;
+width: 95%;
+padding: 5px;
+border-radius: 4px;
+}
+.post-md{
+    border: 2px solid #A149FA;  
+border-radius: 4px;
+}
+.post-inputs textarea{
+    padding: 4px;
+    border-radius: 4px;
+border: 2px solid #A149FA;
+width: 94%;
+margin: 5px 0 70px 0 ;
+}
+.post-btn{
+    margin: 4px;
+    color:white ;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #3EC70B;
+    background-color:#3B44F6;
+}
+.post-markdow{
+  
+    background: green ;
+}
+#markdown{
+    width: 98%;
+}
+.btn-50{
+    margin: 4px;
+    color:white ;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #3EC70B;
+    background-color:#3B44F6;
+    width: 48%;
+}

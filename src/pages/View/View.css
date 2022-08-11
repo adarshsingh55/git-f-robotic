@@ -1,0 +1,31 @@
+.view{
+    width: 94vw;
+    border: 2px solid #3EC70B;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+    
+}
+.projectName{
+    font-size: 1.5rem;
+    color: #3B44F6;
+}
+.view-links{
+    display: flex;
+    justify-content: center;
+}
+.view-links iframe{
+    width: 80vw !important;
+    height: calc(0.5623*80vw) !important;
+}
+.view-description{
+    font-size: 1.2rem;
+    color: #3B44F6;
+}
+.view-html{
+    overflow-x:hidden ;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 2px solid #3B44F6;
+}

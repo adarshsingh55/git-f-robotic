@@ -1,0 +1,67 @@
+.bnavbar {
+    background-color: #F7EC09;
+    color: black;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    border-bottom-left-radius:9px ;
+    border-bottom-right-radius:9px;
+    z-index: 2;
+    justify-content: space-evenly;
+    height: 75px;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .bnavbar a {
+    /* float: left; */
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bnavbar a i { 
+    font-size: 1.5rem;
+    width: 40px;
+    text-decoration: none;
+  }
+  
+  /* Change the color of links on hover */
+  /* .bnavbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+
+  .bnavbar a.active {
+    color:#A149FA;
+  } 
+  .bnavbar li{
+list-style: none;
+padding: 7px 12px;
+}
+.bnavbar a{
+list-style: none;
+text-align: center;
+text-decoration: none;
+padding-top: 5px;
+}
+  @media only screen and (min-width: 600px){
+    .bnavbar{
+      top: 0px;
+      width: auto;
+      height: 100vh;
+      flex-direction: column;
+      justify-content:flex-start; 
+    }
+    .bnavbar a :first-child{
+      margin-top: 60px;
+    }
+}
+  
+  

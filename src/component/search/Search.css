@@ -1,0 +1,15 @@
+.search-btn{
+    margin: 4px;
+    color:white ;
+    font-size: 1.5rem;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #3EC70B;
+    background-color:#3B44F6;
+}
+.search-btn option{
+    font-size: 1rem;
+}
+.search{
+    display: inline;
+}

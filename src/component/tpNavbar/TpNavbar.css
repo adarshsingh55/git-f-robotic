@@ -1,0 +1,82 @@
+.c-nav{
+  background: #F7EC09;
+  
+  justify-content: space-between;
+}
+.nav{
+  background: #F7EC09;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+  z-index: 3;
+  height: 45px;
+}
+.logo{
+  font-size: 2rem;
+  color: #A149FA;
+}
+.topnav {
+    overflow: hidden;
+  }
+  
+  .links a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    z-index: 2;
+  }
+  
+  .topnav a:hover {
+    background-color:#A149FA;
+    color: black;
+    border-radius: 5px;
+  }
+  .icon {
+    display: none; 
+    font-size: 1.5rem;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .c-nav{
+      flex-direction: column;
+    }
+    .g-btn{
+      padding: 4px;
+      background-color: #3EC70B;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+    .links{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .responsive{
+      transition: all 0.3s ease;
+      margin-top: 45px;
+      position: fixed;
+      background:#F7EC09 ;
+      width: 100vw;
+    }
+    .s{
+      transition: all 0.5s ease;
+      position: relative;
+      margin-top: -45vh;
+      width: 100vw;
+      position: fixed;
+    }
+
+  }
+  
+  @media screen and (max-width: 600px) {
+    .icon{
+      display:inline-block;
+    }
+    
+  }

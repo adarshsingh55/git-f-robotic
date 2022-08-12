@@ -19,6 +19,11 @@ function SignUp() {
   const handelsubmit = async (e) => {
     e.preventDefault();
 Signup(note.Name,note.Email,note.Password)
+setnote({
+  Name: "",
+  Email: "",
+  Password: "",
+})
 }
 
   return (

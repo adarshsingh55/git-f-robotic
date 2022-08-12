@@ -1,4 +1,4 @@
-import React ,{useContext,useEffect,useState}from 'react'
+import React ,{useContext,useEffect}from 'react'
 import Items from '../../component/items/Items'
 import Search from '../../component/search/Search'
 import noteContext from "../../context/Nodecontext";
@@ -13,13 +13,14 @@ export default function Home() {
   
   useEffect(() => {
     getNotesByTag(searchTag)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[searchTag]);
 
   return (
     <div className='container'>
       <Search/>
       {
-        notes.map((notes)=>{return<Items key={notes._id} notes={notes} />
+        notes.map((notes)=>{return<Items key={notes._id} notes={notes} show={false}/>
         })
       }
     </div>

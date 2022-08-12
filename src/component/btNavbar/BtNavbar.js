@@ -1,6 +1,6 @@
 import React from "react";
 import "./BtNavbar.css";
-import { Link,useLocation,useNavigate} from "react-router-dom";
+import { Link,useLocation} from "react-router-dom";
 export default function BtNavbar() {
   let location =useLocation()
   return (

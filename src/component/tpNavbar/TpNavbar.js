@@ -4,7 +4,7 @@ import { Link} from "react-router-dom";
 
 export default function TpNavbar() {
   const ref = useRef(null);
-  function myFunction(e) {
+  function myFunction() {
     var x = ref.current;
     if (x.className === "s") {
       x.className = " responsive";
@@ -12,6 +12,13 @@ export default function TpNavbar() {
       x.className = "s";
     }
   }
+  
+
+  const handelLogout=()=>{
+    localStorage.removeItem('token')
+    myFunction()
+  }
+
   return (<div className="c-nav  flex">
     <div className=" flex nav">
     <span className="logo">
@@ -25,8 +32,9 @@ export default function TpNavbar() {
    
         <Link to="#news">About</Link>
          <div>
-        <Link to="/login" className="login-btn g-btn" >LOGIN</Link>
-        <Link to="/signup" className="sigbup-btn  g-btn" onClick={()=>myFunction()}> SIGNUP</Link>
+       {!localStorage.getItem('token')?<> <Link to="/login" className="login-btn g-btn" onClick={()=>myFunction()}>LOGIN</Link>
+        <Link to="/signup" className="sigbup-btn  g-btn" onClick={()=>myFunction()}> SIGNUP</Link></>:<button className="g-btn" onClick={handelLogout} type="submit">logout</button>
+        }
         </div>
 
       </div>

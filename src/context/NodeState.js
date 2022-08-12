@@ -92,6 +92,7 @@ function NodeState(props) {
           getNotesByTag,
           notes,
           userNotes,
+          setUserNotes,
           getUserNotes,
           getUserInfo,
           userInfo,

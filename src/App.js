@@ -14,6 +14,7 @@ import InputContext from "./context/InputContext";
 import View from "./pages/View/View";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import Update from "./pages/Update/Update";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/view/:id" element={<View/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<SignUp/>} />
+            <Route path="/update/:id" element={<Update/>} />
           </Route>
         </Routes>
       </BrowserRouter>

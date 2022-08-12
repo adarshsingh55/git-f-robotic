@@ -1,9 +1,18 @@
-import React, {useContext} from 'react'
+import React, {useContext,useEffect} from 'react'
 import noteContext from '../../context/Nodecontext'
+import { useParams } from "react-router-dom";
+
 import "./View.css"
 function View() {
+  
   const context = useContext(noteContext);
-  const { content } = context;
+  const { content ,getData } = context;
+  const {id} =useParams()
+  useEffect(() => {
+    getData(id)
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
+  
   return (
     <div className="container">
     <div className=' view'>

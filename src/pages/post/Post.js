@@ -23,11 +23,12 @@ const ref = useRef(null);
   const { addData } = context;
   const [data, setdata] = useState("");
   const [chat, setchat] = useState(0);
-
+  // const [ignore,forceUpdate] = useReducer(x=>x+1,0)
   const handleChange = (e, editor) => {
     let data = editor.getData();
     setdata(data);
   };
+ 
 
   const [note, setnote] = useState({
     projectName: "",
@@ -44,13 +45,14 @@ const ref = useRef(null);
 
 
   const handleClick = async(e) => {
-    let marked1 =await marked.parse(ref.current.value);
-    console.log(marked1);
+    // let marked1 =await marked.parse(ref.current.value);
+    // console.log(marked1);
     // console.log("all is fine untill now");
-    //  if  (ActiveCad==="markdown") {  
-    //     await setdata(marked1)
-    //   console.log(data);
-    // }
+    let marked1
+     if  (ActiveCad==="markdown") {  
+     marked1 =await marked.parse(ref.current.value);
+    // console.log(marked1);
+    }
     addData(note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag);
 
     e.preventDefault();
@@ -61,10 +63,13 @@ const ref = useRef(null);
       generalTag: "Web development",
       markdown:""
     });
-    setSearchTag("Web development");
-    console.log(data);
+   await setSearchTag("Web development");
+    // console.log(data);
     setchat(0);
-    setdata("");
+    // console.log(ignore);
+     await setdata("");
+    //  console.log(data)
+    // forceUpdate()
   };
 
   return (

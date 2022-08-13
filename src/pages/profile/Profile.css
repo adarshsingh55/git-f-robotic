@@ -1,11 +1,16 @@
 .profile{
-    padding: 10px 5px;
+    padding: 10px 8px;
 
 }
 .user{
     display: flex;
     align-items: center;
 
+}
+.edit-profile{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 15px;
 }
 .user-img{
     width: 80px;
@@ -14,6 +19,9 @@
 }
 .user-name{
     padding: 5px;
+}
+.profile-description{
+    padding-left: 10px;
 }
 .pre{
     overflow-x: auto;

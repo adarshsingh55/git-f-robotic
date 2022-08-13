@@ -61,7 +61,7 @@ function InputContext(props) {
     }
   };
 
-  // 6 post signup (/user/login)
+  // 6 post login (/user/login)
   const Login = async (email, password) => {
     let url = `${host}/user/login`;
     const response = await fetch(url, {
@@ -106,33 +106,48 @@ function InputContext(props) {
   };
 
   //4 Edit a notes
-  const editNote = async (id, title, description, tag) => {
-    let notes
-    let url = `${host}/api/notes/updatenote/${id}`;
+  const editNote = async (id,   projectName,
+    youtubeLink,
+    description,
+    sanitizedHtml,
+    generalTag,
+    tag) => {
+    // let notes
+    let url = `${host}/content/updatedata/${id}`;
     const response = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
       },
-      body: JSON.stringify({ title, description, tag }),
+      body: JSON.stringify({   projectName,
+        youtubeLink,
+        description,
+        sanitizedHtml,  
+        generalTag,
+        tag}),
     });
-    const json = response.json({ title, description, tag });
+    const json = response.json({   projectName,
+      youtubeLink,
+      description,
+      sanitizedHtml,
+      generalTag,
+      tag});
     console.log(json);
 
-    let newNotes = await JSON.parse(JSON.stringify(notes));
-    for (let index = 0; index < newNotes.length; index++) {
-      const element = newNotes[index];
-      if (element._id === id) {
-        newNotes[index].title = title;
-        newNotes[index].description = description;
-        newNotes[index].tag = tag;
-        break;
-      }
-    }
+    // let newNotes = await JSON.parse(JSON.stringify(notes));
+    // for (let index = 0; index < newNotes.length; index++) {
+    //   const element = newNotes[index];
+    //   if (element._id === id) {
+    //     newNotes[index].title = title;
+    //     newNotes[index].description = description;
+    //     newNotes[index].tag = tag;
+    //     break;
+    //   }
+    // }
     // setNote(newNotes);
   };
-
+  
   return (
     <div>
       <inputContext.Provider value={{ addData, Signup, Login, deleteNote,editNote }}>

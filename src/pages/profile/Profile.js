@@ -16,15 +16,21 @@ export default function Profile() {
   return (
     <div className='container'>
       <div className="profile">
+          <div className="edit-profile" onClick={()=>alert("comming soon")}>
+          <i className="fa-solid fa-pen-to-square   " ></i>
+          </div>
         <div className="user">
-          <img src="/img/profile2.jpeg" alt="" className="user-img" />
+          <img src="/img/profile1.jpeg" alt="" className="user-img" />
           <h1 className='user-name'>
            {userInfo.user?userInfo.user.name:"login or signup"}
           </h1>
         </div>
-        <div className="description">
+        <div className="profile-description">
           <p className='pre'>
           {userInfo.user?userInfo.user.description:"login or signup"}
+          {
+            !userInfo.user.description?"Hello i am.. I like..":"" 
+           }
           </p>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function Update() {
 // const dompurify = createDomPurify(new JSDOM().window)
 const {id} =useParams()
 const ref = useRef(null);
-  const [ActiveCad, setActiveCad] = useState("text");
+  const [ActiveCad, setActiveCad] = useState("markdown");
 
   const context1 = useContext(noteContext);
   const { searchTag, setSearchTag,content ,getData } = context1;
@@ -27,19 +27,31 @@ const ref = useRef(null);
   const [chat, setchat] = useState(0);
 
   const handleChange = ( editor) => {
+    alert("not working")
     let data = editor.getData();
     setdata(data);
-    console.log(sanitizedHtml);
   };
-
+   
   const [note, setnote] = useState({
     projectName: projectName,
     links: youtubeLink,
     description: description,
     sanitizedHtml: data,
     generalTag: searchTag,
-    markdown:data
+    markdown:ActiveCad==="markdown"?sanitizedHtml:""
   });
+  useEffect(() => {
+    setnote({
+      projectName: projectName,
+      links: youtubeLink,
+      description: description,
+      sanitizedHtml: data,
+      generalTag: searchTag,
+      markdown:ActiveCad==="markdown"?sanitizedHtml:""
+    });
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ActiveCad])
+  
   // projectName, youtubeLink,description,sanitizedHtml ,tag,generalTag
   const onChange = (e) => {
     setnote({ ...note, [e.target.name]: e.target.value });
@@ -47,13 +59,12 @@ const ref = useRef(null);
 
 
   const handleClick = async(e) => {
-    let marked1 =await marked.parse(ref.current.value);
-    console.log(marked1);
-    //  if  (ActiveCad==="markdown") {  
-    //     await setdata(marked1)
-    //   console.log(data);
-    // }
-    editNote(note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag);
+    let marked1
+    if  (ActiveCad==="markdown") {  
+    marked1 =await marked.parse(ref.current.value);
+   console.log(marked1);
+   }
+    editNote(id,note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag);
 
     e.preventDefault();
     setnote({
@@ -149,7 +160,7 @@ const ref = useRef(null);
             )}
           </div>
         </div>
-        <button onClick={()=>handleClick()} className="post-btn">
+        <button onClick={(e)=>handleClick(e)} className="post-btn">
           {" "}
           Publish
         </button>

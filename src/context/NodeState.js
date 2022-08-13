@@ -6,12 +6,13 @@ function NodeState(props) {
   // 1 get notes by general tag------  
   // 2 get notes by user id ()------
   // 3 get user info  ---------
+  //4 get a spasific notes by its id----------
 
   const token =localStorage.getItem('token')
   // const host = "http://localhost"
   const host = process.env.REACT_APP_LOCAL_HOST;
 
-  // 1 get notes by general tag------------------------------------------------------
+  // 1 get notes by general  tag------------------------------------------------------
   const [notes, setNote] = useState([]);
   const [searchTag, setSearchTag] = useState("Web development");
   const getNotesByTag = async (serchTag) => {

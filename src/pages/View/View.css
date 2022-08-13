@@ -1,6 +1,6 @@
 .view{
     width: 94vw;
-    border: 2px solid #3EC70B;
+    /* border: 2px solid #3EC70B; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -9,23 +9,34 @@
 }
 .projectName{
     font-size: 1.5rem;
-    color: #3B44F6;
+    color:#A149FA;
+    padding-left: 8px;
+    font-weight: bold;
 }
+
 .view-links{
+    margin-top: 8px;
     display: flex;
     justify-content: center;
+    height: calc(0.5623*95vw);
+    background:#F7F5F2;
+    
 }
 .view-links iframe{
-    width: 80vw !important;
-    height: calc(0.5623*80vw) !important;
+    width: 97vw !important;
+    height: calc(0.5623*95vw) !important;
 }
 .view-description{
+    margin-top: 8px;
     font-size: 1.2rem;
-    color: #3B44F6;
+    /* color: #3B44F6; */
+    padding-left: 8px;
+    /* padding-right: 5px; */
 }
 .view-html{
     overflow-x:hidden ;
     margin-top: 15px;
     border-radius: 5px;
     border: 2px solid #3B44F6;
+    padding: 10px;
 }

@@ -22,6 +22,7 @@ padding-top: 5px;
   color: #61dafb;
 }
 .container{
+  padding-top: 52px;
 padding-bottom: 70px;
 }
 @media only screen and (min-width: 600px){

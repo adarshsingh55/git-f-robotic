@@ -1,10 +1,12 @@
-import React ,{ useRef} from "react";
+import React ,{ useRef,useReducer} from "react";
 import "./TpNavbar.css";
 import { Link} from "react-router-dom";
 
 export default function TpNavbar() {
+  const [ignore,forceUpdate] = useReducer(x=>x+1,0)
   const ref = useRef(null);
-  function myFunction() {
+  function myFunction(e) {
+    forceUpdate()
     var x = ref.current;
     if (x.className === "s") {
       x.className = " responsive";
@@ -12,11 +14,18 @@ export default function TpNavbar() {
       x.className = "s";
     }
   }
-  
+ console.log(ignore);
+ 
+  // React.useEffect(() => {
+  //   //  console.log(location);
+  //   }, []);
+//  const [settoken] = useState(localStorage.getItem('token'));
 
   const handelLogout=()=>{
     localStorage.removeItem('token')
     myFunction()
+    forceUpdate()
+    // settoken(localStorage.getItem('token'))
   }
 
   return (<div className="c-nav  flex">
@@ -24,8 +33,10 @@ export default function TpNavbar() {
     <span className="logo">
       focus   
     </span>
-        <span className="icon" onClick={(e)=>myFunction(e)}>  <i className="fa fa-bars "></i>
-        </span>
+    <img  src="./img/bars-solid.svg" alt="open" className="icon" onClick={(e)=>myFunction(e)} />
+        {/* <span className="icon" onClick={(e)=>myFunction(e)}> */}
+           {/* <i className="fa fa-bars "></i> */}
+        {/* </span> */}
         </div>
 <div className="s" ref={ref}>
       <div className=" flex topnav links" >

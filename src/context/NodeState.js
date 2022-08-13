@@ -10,7 +10,7 @@ function NodeState(props) {
 
   const token =localStorage.getItem('token')
   // const host = "http://localhost"
-  const host = process.env.REACT_APP_LOCAL_HOST;
+  const host = "https://focusedguide.herokuapp.com";
 
   // 1 get notes by general  tag------------------------------------------------------
   const [notes, setNote] = useState([]);

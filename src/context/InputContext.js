@@ -3,7 +3,7 @@ import inputContext from "./InNodeContext";
 function InputContext(props) {
   const token = localStorage.getItem("token");
   // const host = "http://localhost"
-  const host = process.env.REACT_APP_LOCAL_HOST;
+  const host = "https://focusedguide.herokuapp.com";
 
   // 4  post request data(/content/postdata)--------------------------------------
   const addData = async (

@@ -29,7 +29,7 @@ export default function Profile() {
           <p className='pre'>
           {userInfo.user?userInfo.user.description:"login or signup"}
           {
-            !userInfo.user.description?"Hello i am.. I like..":"" 
+            userInfo.user?"Hello i am.. I like..":"" 
            }
           </p>
         </div>

@@ -1,9 +1,58 @@
-import React from "react";
+import React ,{useState}from "react";
 import inputContext from "./InNodeContext";
+import { useNavigate} from "react-router-dom";
 function InputContext(props) {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  // const host = "http://localhost"
-  const host = "https://focusedguide.herokuapp.com";
+  const host = "http://localhost"
+  // const host = "https://focusedguide.herokuapp.com";
+  
+  const [Loding, setLoding] = useState(false);
+
+  const [List, setList] = useState([]);
+  // console.log(List);
+  let toastProperties = null;
+  const showToast = (type,description) => {
+    // console.log("show toast");
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: List.length+1,
+          title: "success",
+          description: description,
+          backgoundColor: "#5cb85c",
+        };
+        break;
+      case "danger":
+        toastProperties = {
+          id: List.length+1,
+          title: "danger",
+          description: description,
+          backgoundColor: "#d9534f",
+        };
+        break;
+        
+        case "info":
+          toastProperties = {
+            id: List.length+1,
+            title: "info",
+            description: description,
+            backgoundColor: "#5bc0de",
+          };
+          break;
+        case "warning":
+          toastProperties = {
+            id: List.length+1,
+            title: "warning",
+            description: description,
+            backgoundColor: "#f0ad4e",
+          };
+          break;
+          default:
+            toastProperties=[];
+          }
+          setList([...List ,toastProperties]);
+  };
 
   // 4  post request data(/content/postdata)--------------------------------------
   const addData = async (
@@ -16,7 +65,7 @@ function InputContext(props) {
   ) => {
     // api call
     let url = `${host}/content/postdata`;
-    let addfile = await fetch(url, {
+    let response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,15 +81,23 @@ function InputContext(props) {
         tag,
       }),
     });
+   let  json = await response.json();
+    if (json.success) {
+      // save the token and redirect
+      showToast("success","Your data is published successfully successfully!");
+      setLoding(false)
+    } else {
+      setLoding(false)
+      showToast("warning","some error occer");
+    }
     // const note =await response.json();
-    console.log(addfile);
     // setNote(notes.concat(note))
     // notes.unshift(note);
     // setNote(notes)
     // console.log(notes);
   };
 
-  // 5 post signup (/user/signup)
+  // 5 post signup (/user/signup)---------------------------------------
   const Signup = async (name, email, password) => {
     let url = `${host}/user/signup`;
     const response = await fetch(url, {
@@ -50,18 +107,21 @@ function InputContext(props) {
       },
       body: JSON.stringify({ name, email, password }),
     });
-    const json = await response.json();
+    const json = await response.json()
     console.log(json);
     if (json.success) {
       // save the token and redirect
-      alert("you have signed successfully!");
+      showToast("success","you have signed successfully!");
       localStorage.setItem("token", json.authtoken);
+      setLoding(false)
+      window.history.back();
     } else {
-      alert("invalid cradential", "danger");
+      setLoding(false)
+      showToast("warning","invalid cradential");
     }
   };
 
-  // 6 post login (/user/login)
+  // 6 post login (/user/login)------------------------------------------------------
   const Login = async (email, password) => {
     let url = `${host}/user/login`;
     const response = await fetch(url, {
@@ -77,16 +137,19 @@ function InputContext(props) {
     const json = await response.json();
     if (json.success) {
       // save the token and redirect
-      alert("you have logedin successfully");
+      showToast("success","you are authanticated")
       localStorage.setItem("token", json.authtoken);
+      window.history.back();
+      setLoding(false)
     } else {
-      alert("invalid cradential", "danger");
-      console.log(json);
+      showToast("warning","invalid cradential", "danger");
+      // console.log(json);
+    setLoding(false)
       // setNote(json)
     }
   };
 
-  //3 Delete a note  (content/deletenote/)
+  //3 Delete a note  (content/deletenote/)-----------------------------------------
   const deleteNote = async (id, notes, setNote) => {
     // console.log("deletion the note with id" + id);
     let newNote = notes.filter((note) => {
@@ -150,7 +213,17 @@ function InputContext(props) {
   
   return (
     <div>
-      <inputContext.Provider value={{ addData, Signup, Login, deleteNote,editNote }}>
+      <inputContext.Provider value={{ 
+        addData, 
+        Signup, 
+        Login, 
+        deleteNote,
+        editNote,
+         List,
+         setList ,
+         Loding,
+          setLoding
+          }}>
         {props.children}
       </inputContext.Provider>
     </div>

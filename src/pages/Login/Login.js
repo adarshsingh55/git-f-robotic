@@ -1,9 +1,11 @@
 import React,{useState,useContext} from 'react'
+import Spiner2 from '../../component/spiner/Spiner2';
 import inputContext from '../../context/InNodeContext';
 import "./Login.css"
 function Login() {
     const context = useContext(inputContext);
-    const { Login } = context;
+    const { Login ,Loding, setLoding} = context;
+    // setLoding(false)
     const [note, setnote] = useState({
         Email: "",
         Password: "",
@@ -14,14 +16,16 @@ function Login() {
   };
   
   const handelsubmit = (e) => {
+    setLoding(true)
     e.preventDefault();
     Login(note.Email,note.Password)
 }
 
   return (
-    <div className='container'>
+    <div>
+
 <form onSubmit={ handelsubmit} className="signup">
-   
+    <h1>LOGIN</h1>
         <div className="discription post-inputs">
           <label htmlFor="description">Email</label>
           <input
@@ -45,6 +49,7 @@ function Login() {
         </div>
         <button type="submit"  className="post-btn">Submit</button>
       </form>
+      {Loding?<Spiner2/>:<></>}
     </div>
   )
 }

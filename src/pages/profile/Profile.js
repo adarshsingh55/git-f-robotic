@@ -14,7 +14,7 @@ export default function Profile() {
   },[]);
 
   return (
-    <div className='container'>
+    <div>
       <div className="profile">
           <div className="edit-profile" onClick={()=>alert("comming soon")}>
           <i className="fa-solid fa-pen-to-square   " ></i>

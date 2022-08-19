@@ -3,14 +3,65 @@ import noteContext from "./Nodecontext";
 import { useState } from "react";
 
 function NodeState(props) {
+  // 0 Alert fountion -------
   // 1 get notes by general tag------  
   // 2 get notes by user id ()------
   // 3 get user info  ---------
   //4 get a spasific notes by its id----------
 
+
+  const [Loding, setLoding] = useState(true);
+  
+
   const token =localStorage.getItem('token')
-  // const host = "http://localhost"
-  const host = "https://focusedguide.herokuapp.com";
+  const host = "http://localhost"
+  // 0 Alert fountion -------------------------------------
+  const [List, setList] = useState([]);
+  // console.log(List);
+  let toastProperties = null;
+  const showToast = (type) => {
+    // console.log("show toast");
+    switch (type) {
+      case "success":
+        toastProperties = {
+          id: List.length+1,
+          title: "success",
+          description: "this is a success button",
+          backgoundColor: "#5cb85c",
+        };
+        break;
+      case "danger":
+        toastProperties = {
+          id: List.length+1,
+          title: "danger",
+          description: "this is a danger button",
+          backgoundColor: "#d9534f",
+        };
+        break;
+        
+        case "info":
+          toastProperties = {
+            id: List.length+1,
+            title: "info",
+            description: "this is a info button",
+            backgoundColor: "#5bc0de",
+          };
+          break;
+        case "warning":
+          toastProperties = {
+            id: List.length+1,
+            title: "warning",
+            description: "this is a warning button",
+            backgoundColor: "#f0ad4e",
+          };
+          break;
+          default:
+            toastProperties=[];
+          }
+          setList([...List ,toastProperties]);
+  };
+
+  // const host = "https://focusedguide.herokuapp.com";
 
   // 1 get notes by general  tag------------------------------------------------------
   const [notes, setNote] = useState([]);
@@ -27,6 +78,7 @@ function NodeState(props) {
     const json = await response.json();
     // console.log(json);
     setNote(json);
+    setLoding(false)
   };
 
   // 2 get notes by user id ()----------------------------------------------------
@@ -66,6 +118,7 @@ function NodeState(props) {
    const [content, setContent] = useState({ getData: "" });
    
    const getData = async (id) => {
+    setLoding(true)
     // console.log("deletion the note with id" + id);
     let newNote = notes.filter((note) => {
       return note._id !== id;
@@ -77,7 +130,7 @@ function NodeState(props) {
       headers: {
         "Content-Type": "application/json",
         // "auth-token":localStorage.getItem('token')
-        "auth-token":token
+        // "auth-token":token
       },
     });
     const json = await response.json();
@@ -100,7 +153,11 @@ function NodeState(props) {
           searchTag,
           setSearchTag,
           getData,
-          content
+          content,
+          Loding,
+          List,
+          setList
+          
         }}
       >
         {props.children}

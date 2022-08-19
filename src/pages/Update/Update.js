@@ -12,7 +12,10 @@ import Search from "../../component/search/Search";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+
+
 export default function Update() {
+
 // const dompurify = createDomPurify(new JSDOM().window)
 const {id} =useParams()
 const ref = useRef(null);
@@ -33,24 +36,24 @@ const ref = useRef(null);
   };
    
   const [note, setnote] = useState({
-    projectName: projectName,
-    links: youtubeLink,
-    description: description,
-    sanitizedHtml: data,
-    generalTag: searchTag,
-    markdown:ActiveCad==="markdown"?sanitizedHtml:""
+    projectName:"",
+    links:"",
+    description: "",
+    sanitizedHtml: "",
+    generalTag: "",
+    markdown:ActiveCad==="markdown"?"":""
   });
   useEffect(() => {
     setnote({
-      projectName: projectName,
-      links: youtubeLink,
-      description: description,
-      sanitizedHtml: data,
-      generalTag: searchTag,
+      projectName: projectName?projectName:"",
+      links: youtubeLink?youtubeLink:"",
+      description: description?description:"",
+      sanitizedHtml: data?data:"",
+      generalTag: searchTag?searchTag:"",
       markdown:ActiveCad==="markdown"?sanitizedHtml:""
     });
      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ActiveCad])
+  }, [content])
   
   // projectName, youtubeLink,description,sanitizedHtml ,tag,generalTag
   const onChange = (e) => {
@@ -87,7 +90,7 @@ const ref = useRef(null);
        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
   return (
-    <div className="container">
+    <div >
       <div className="post">
         <div className="title post-inputs">
           <label htmlFor="title">Title</label>

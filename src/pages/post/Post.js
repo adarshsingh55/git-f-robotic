@@ -10,6 +10,7 @@ import { marked } from "marked";
 import Search from "../../component/search/Search";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Spiner2 from "../../component/spiner/Spiner2";
 
 export default function Post() {
 // const dompurify = createDomPurify(new JSDOM().window)
@@ -17,10 +18,11 @@ const ref = useRef(null);
   const [ActiveCad, setActiveCad] = useState("text");
 
   const context1 = useContext(noteContext);
-  const { searchTag, setSearchTag } = context1;
+  const { searchTag, setSearchTag} = context1;
 
   const context = useContext(inputContext);
-  const { addData } = context;
+  const { addData ,Loding,
+    setLoding} = context;
   const [data, setdata] = useState("");
   const [chat, setchat] = useState(0);
   // const [ignore,forceUpdate] = useReducer(x=>x+1,0)
@@ -44,7 +46,10 @@ const ref = useRef(null);
   };
 
 
-  const handleClick = async(e) => {
+  const handelsubmit = async(e) => {
+    e.preventDefault();
+
+    setLoding(true)
     // let marked1 =await marked.parse(ref.current.value);
     // console.log(marked1);
     // console.log("all is fine untill now");
@@ -72,9 +77,10 @@ const ref = useRef(null);
     // forceUpdate()
   };
 
-  return (
-    <div className="container">
-      <div className="post">
+  return (<>
+  {!localStorage.getItem('token')?<h1>Login first to write content</h1>:<div >
+      {Loding?<Spiner2/>:<></>}
+      <form onSubmit={(e)=> handelsubmit(e)} className="post">
         <div className="title post-inputs">
           <label htmlFor="title">Title</label>
           <input
@@ -146,11 +152,12 @@ const ref = useRef(null);
             )}
           </div>
         </div>
-        <button onClick={handleClick} className="post-btn">
-          {" "}
+        <button type="submit"  className="post-btn">
           Publish
         </button>
-      </div>
-    </div>
+       
+      </form>
+    </div>}
+    </>
   );
 }

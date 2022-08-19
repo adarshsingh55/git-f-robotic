@@ -1,0 +1,8 @@
+.spiner{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.spiner img{
+    width: 95%;
+}

@@ -1,0 +1,62 @@
+ .container{
+    font-size: 14px;
+    position: fixed;
+    z-index: 4;
+
+ }
+
+ .bottom-right{
+    top: 4rem;
+    right: -1.5rem;
+    animation:  toast-in-right .7s;
+ }
+
+ .notification{
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #999;
+    color: black;
+    opacity: 0.9;
+    transition: .5s ease;
+ }
+
+ .notification:hover{
+    box-shadow: 0 0 12px white;
+    opacity: 1;
+ }
+ .toast{
+    height: 40px;
+    width: 80%;
+    max-width: 365px;
+    color: white;
+    padding: 18px 15px 10px 10px;
+ }
+ .container button{
+    float: right;
+    background: none;
+    border: none;
+    color: white;
+    opacity: 0.75;
+ }
+ .title{
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 6px;
+    width: 300px;
+    height: 18px;
+ }
+ .description{
+    margin: 0;
+    text-align: left;
+ }
+
+ @keyframes toast-in-right{
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+ }

@@ -7,7 +7,7 @@
 
  .bottom-right{
     top: 4rem;
-    right: -1.5rem;
+    right: 0rem;
     animation:  toast-in-right .7s;
  }
 
@@ -26,7 +26,7 @@
  }
  .toast{
     height: 40px;
-    width: 80%;
+    width: 90%;
     max-width: 365px;
     color: white;
     padding: 18px 15px 10px 10px;

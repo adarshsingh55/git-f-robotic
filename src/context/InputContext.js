@@ -4,8 +4,8 @@ import { useNavigate} from "react-router-dom";
 function InputContext(props) {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const host = "http://localhost"
-  // const host = "https://focusedguide.herokuapp.com";
+  // const host = "http://localhost"
+  const host = "https://focusedguide.herokuapp.com";
   
   const [Loding, setLoding] = useState(false);
 
@@ -86,6 +86,7 @@ function InputContext(props) {
       // save the token and redirect
       showToast("success","Your data is published successfully successfully!");
       setLoding(false)
+      navigate(`/view/${json.id}`)
     } else {
       setLoding(false)
       showToast("warning","some error occer");
@@ -165,7 +166,11 @@ function InputContext(props) {
       },
     });
     const json = await response.json();
-    console.log(json);
+    if (json.success) {
+      showToast("danger","content has been deleted successfuly");
+    } else {
+      showToast("warning","some problem occer");
+    }
   };
 
   //4 Edit a notes

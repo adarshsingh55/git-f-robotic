@@ -2,9 +2,10 @@ import React ,{useContext,useEffect} from 'react'
 import Items from '../../component/items/Items'
 import "./Profile.css"
 import noteContext from "../../context/Nodecontext";
+import Spiner2 from '../../component/spiner/Spiner2';
 export default function Profile() {
   const context = useContext(noteContext);
-  const { getUserNotes, userNotes,getUserInfo,userInfo } = context;
+  const { getUserNotes, userNotes,getUserInfo,userInfo,Loding} = context;
 
 
   useEffect(() => {
@@ -13,8 +14,9 @@ export default function Profile() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  return (
+  return (<>{Loding?<Spiner2/>:
     <div>
+      {!localStorage.getItem('token')?<h1>Login or signup first to see the profile !!</h1>:<>
       <div className="profile">
           <div className="edit-profile" onClick={()=>alert("comming soon")}>
           <i className="fa-solid fa-pen-to-square   " ></i>
@@ -37,6 +39,8 @@ export default function Profile() {
       {userInfo.user?userNotes.map((userNotes)=>{return<Items key={userNotes._id}   show={"true"}notes={userNotes} />
         }):"no notes to display"
       } 
-    </div>
+      </>}
+    </div>}
+    </>
   )
 }

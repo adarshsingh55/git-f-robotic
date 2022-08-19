@@ -14,52 +14,52 @@ function NodeState(props) {
   
 
   const token =localStorage.getItem('token')
-  const host = "http://localhost"
+  const host = "https://focusedguide.herokuapp.com"
   // 0 Alert fountion -------------------------------------
-  const [List, setList] = useState([]);
-  // console.log(List);
-  let toastProperties = null;
-  const showToast = (type) => {
-    // console.log("show toast");
-    switch (type) {
-      case "success":
-        toastProperties = {
-          id: List.length+1,
-          title: "success",
-          description: "this is a success button",
-          backgoundColor: "#5cb85c",
-        };
-        break;
-      case "danger":
-        toastProperties = {
-          id: List.length+1,
-          title: "danger",
-          description: "this is a danger button",
-          backgoundColor: "#d9534f",
-        };
-        break;
+  // const [List, setList] = useState([]);
+  // // console.log(List);
+  // let toastProperties = null;
+  // const showToast = (type) => {
+  //   // console.log("show toast");
+  //   switch (type) {
+  //     case "success":
+  //       toastProperties = {
+  //         id: List.length+1,
+  //         title: "success",
+  //         description: "this is a success button",
+  //         backgoundColor: "#5cb85c",
+  //       };
+  //       break;
+  //     case "danger":
+  //       toastProperties = {
+  //         id: List.length+1,
+  //         title: "danger",
+  //         description: "this is a danger button",
+  //         backgoundColor: "#d9534f",
+  //       };
+  //       break;
         
-        case "info":
-          toastProperties = {
-            id: List.length+1,
-            title: "info",
-            description: "this is a info button",
-            backgoundColor: "#5bc0de",
-          };
-          break;
-        case "warning":
-          toastProperties = {
-            id: List.length+1,
-            title: "warning",
-            description: "this is a warning button",
-            backgoundColor: "#f0ad4e",
-          };
-          break;
-          default:
-            toastProperties=[];
-          }
-          setList([...List ,toastProperties]);
-  };
+  //       case "info":
+  //         toastProperties = {
+  //           id: List.length+1,
+  //           title: "info",
+  //           description: "this is a info button",
+  //           backgoundColor: "#5bc0de",
+  //         };
+  //         break;
+  //       case "warning":
+  //         toastProperties = {
+  //           id: List.length+1,
+  //           title: "warning",
+  //           description: "this is a warning button",
+  //           backgoundColor: "#f0ad4e",
+  //         };
+  //         break;
+  //         default:
+  //           toastProperties=[];
+  //         }
+  //         setList([...List ,toastProperties]);
+  // };
 
   // const host = "https://focusedguide.herokuapp.com";
 
@@ -95,6 +95,7 @@ function NodeState(props) {
     });
     const json = await response.json();
     setUserNotes(json);
+    setLoding(false)
   };
 
   // 3 get user info  ---------------------------------------------------
@@ -154,9 +155,7 @@ function NodeState(props) {
           setSearchTag,
           getData,
           content,
-          Loding,
-          List,
-          setList
+          Loding
           
         }}
       >

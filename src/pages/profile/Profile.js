@@ -9,8 +9,11 @@ export default function Profile() {
 
 
   useEffect(() => {
-    getUserNotes()
-    getUserInfo()
+    if (localStorage.getItem('token')) {
+      
+      getUserInfo()
+      getUserNotes()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 

@@ -3,7 +3,7 @@ import inputContext from "./InNodeContext";
 import { useNavigate} from "react-router-dom";
 function InputContext(props) {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   // const host = "http://localhost"
   const host = "https://focusedguide.herokuapp.com";
   
@@ -69,8 +69,8 @@ function InputContext(props) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // "auth-token":localStorage.getItem('token'),
-        "auth-token": token,
+        "auth-token":localStorage.getItem('token'),
+        // "auth-token": token,
       },
       body: JSON.stringify({
         projectName,

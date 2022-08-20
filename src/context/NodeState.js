@@ -13,7 +13,8 @@ function NodeState(props) {
   const [Loding, setLoding] = useState(true);
   
 
-  const token =localStorage.getItem('token')
+  // const token =localStorage.getItem('token')
+  // const host = "http://localhost"
   const host = "https://focusedguide.herokuapp.com"
   // 0 Alert fountion -------------------------------------
   // const [List, setList] = useState([]);
@@ -89,8 +90,8 @@ function NodeState(props) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // "auth-token":localStorage.getItem('token')
-        "auth-token": token,
+        "auth-token":localStorage.getItem('token')
+        // "auth-token": token,
       },
     });
     const json = await response.json();
@@ -106,8 +107,8 @@ function NodeState(props) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // "auth-token":localStorage.getItem('token')
-        "auth-token": token,
+        "auth-token":localStorage.getItem('token')
+        // "auth-token": token,
       },
     });
     const json = await response.json();
@@ -130,7 +131,7 @@ function NodeState(props) {
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        // "auth-token":localStorage.getItem('token')
+        "auth-token":localStorage.getItem('token')
         // "auth-token":token
       },
     });

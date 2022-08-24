@@ -14,7 +14,7 @@ function View() {
   }, [id])  
   
   return (
-    <div className="container">
+    <div >
     <div className=' view'>
       <div className="projectName">{content.getData.projectName}</div>
       {/* <span className="view-tag">{content.getData.generalTag}</span> */}

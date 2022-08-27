@@ -82,6 +82,7 @@ function InputContext(props) {
       }),
     });
    let  json = await response.json();
+   console.log(json);
     if (json.success) {
       // save the token and redirect
       showToast("success","Your data is published successfully successfully!");
@@ -98,6 +99,8 @@ function InputContext(props) {
     // console.log(notes);
   };
 
+  const [Reload, setReload] = useState(false);
+  
   // 5 post signup (/user/signup)---------------------------------------
   const Signup = async (name, email, password) => {
     let url = `${host}/user/signup`;
@@ -115,7 +118,9 @@ function InputContext(props) {
       showToast("success","you have signed successfully!");
       localStorage.setItem("token", json.authtoken);
       setLoding(false)
+      setReload(true)
       window.history.back();
+      setReload(false)
     } else {
       setLoding(false)
       showToast("warning","invalid cradential");
@@ -195,25 +200,17 @@ function InputContext(props) {
         generalTag,
         tag}),
     });
-    const json = response.json({   projectName,
-      youtubeLink,
-      description,
-      sanitizedHtml,
-      generalTag,
-      tag});
-    console.log(json);
+    let  json = await response.json();
+      if (json.success) {
+        // save the token and redirect
+        showToast("success","Your data is updated  successfully !");
+        setLoding(false)
+        navigate(`/view/${id}`)
+      } else {
+        setLoding(false)
+        showToast("warning","some error occer");
+      }
 
-    // let newNotes = await JSON.parse(JSON.stringify(notes));
-    // for (let index = 0; index < newNotes.length; index++) {
-    //   const element = newNotes[index];
-    //   if (element._id === id) {
-    //     newNotes[index].title = title;
-    //     newNotes[index].description = description;
-    //     newNotes[index].tag = tag;
-    //     break;
-    //   }
-    // }
-    // setNote(newNotes);
   };
   
   return (
@@ -228,6 +225,7 @@ function InputContext(props) {
          setList ,
          Loding,
           setLoding
+          ,Reload
           }}>
         {props.children}
       </inputContext.Provider>

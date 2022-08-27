@@ -16,6 +16,7 @@
 }
 .items-content{
     padding-left: 5px;
+    min-width: 70%; 
 }
 .items-title{
     color: #3B44F6;

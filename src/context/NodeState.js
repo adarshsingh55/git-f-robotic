@@ -120,12 +120,8 @@ function NodeState(props) {
    const [content, setContent] = useState({ getData: "" });
    
    const getData = async (id) => {
-    setLoding(true)
-    // console.log("deletion the note with id" + id);
-    let newNote = notes.filter((note) => {
-      return note._id !== id;
-    });
-    setNote(newNote)
+    // setLoding(true)
+    setContent({ getData: "" })
     let url = `${host}/content/getdata/${id}`;
     const response = await fetch(url, {
       method: "get",

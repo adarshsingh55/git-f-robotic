@@ -40,3 +40,8 @@
     border: 2px solid #3B44F6;
     padding: 10px;
 }
+.view-html iframe img{
+    width: 97vw !important;
+    /* height: calc(0.5623*95vw) !important; */
+    max-width: 650px;
+}

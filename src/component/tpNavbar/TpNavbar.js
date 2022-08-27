@@ -1,12 +1,18 @@
-import React ,{ useRef,useReducer} from "react";
+import React ,{ useRef,useReducer,useContext} from "react";
 import "./TpNavbar.css";
+import inputContext from "../../context/InNodeContext";
 import { Link} from "react-router-dom";
 
 export default function TpNavbar() {
+  const context = useContext(inputContext);
+  const {Reload} = context;
   const [ignore,forceUpdate] = useReducer(x=>x+1,0)
+  if (Reload) {
+  forceUpdate()
+    
+  }
   const ref = useRef(null);
   function myFunction(e) {
-    forceUpdate()
     var x = ref.current;
     if (x.className === "s") {
       x.className = " responsive";
@@ -15,6 +21,12 @@ export default function TpNavbar() {
     }
   }
  console.log(ignore);
+ function handelLogin(){myFunction() 
+  forceUpdate()}
+ function handleSignup(){
+  myFunction()
+  forceUpdate()
+ }
  
   // React.useEffect(() => {
   //   //  console.log(location);
@@ -42,11 +54,11 @@ export default function TpNavbar() {
       <div className=" flex topnav links" >
    
         <Link to="#news">About</Link>
-         <div>
-       {!localStorage.getItem('token')?<> <Link to="/login" className="login-btn g-btn" onClick={()=>myFunction()}>LOGIN</Link>
-        <Link to="/signup" className="sigbup-btn  g-btn" onClick={()=>myFunction()}> SIGNUP</Link></>:<button className="g-btn" onClick={handelLogout} type="submit">logout</button>
+         
+       {!localStorage.getItem('token')?<> <Link to="/login" className="login-btn g-btn" onClick={()=>handelLogin()}>LOGIN</Link>
+        <Link to="/signup" className="sigbup-btn  g-btn" onClick={()=>handleSignup()}> SIGNUP</Link></>:<button className="g-btn"  onClick={handelLogout} type="submit">logout</button>
         }
-        </div>
+      
 
       </div>
       </div>

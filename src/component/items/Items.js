@@ -26,8 +26,8 @@ export default function Items(props)
         <div className='items-content'>
           <div className="items-title">
         { notes.projectName}
-        <div className='item-icon'>
-          </div>
+        {/* <div className='item-icon'>
+          </div> */}
           </div>
             <div className='discription'>
               {notes.description}

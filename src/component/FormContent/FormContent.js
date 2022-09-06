@@ -1,75 +1,60 @@
-import React, { useState, useContext ,useRef,useEffect } from "react";
-import { useParams } from "react-router-dom";
-import "./Update.css";
-import inputContext from "../../context/InNodeContext";
+import React, { useState, useContext ,useRef } from "react";
+import "./Post.css";
 import noteContext from "../../context/Nodecontext";
+import inputContext from "../../context/InNodeContext";
 import { marked } from "marked";
-// import createDomPurify from "dompurify"
-// import {JSDOM} from "jsdom"
-// import dompurify from "createDomPurify(new JSDOM().window)";
-// import Editor from "./Editor";
 import Search from "../../component/search/Search";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-
-
-export default function Update() {
-
-// const dompurify = createDomPurify(new JSDOM().window)
-const {id} =useParams()
+export default function FormContent() {
 const ref = useRef(null);
-  const [ActiveCad, setActiveCad] = useState("markdown");
+  const [ActiveCad, setActiveCad] = useState("text");
 
   const context1 = useContext(noteContext);
-  const { searchTag, setSearchTag,content ,getData } = context1;
-  const {description,projectName,sanitizedHtml, generalTag,youtubeLink}=content.getData
+  const { searchTag, setSearchTag} = context1;
+
   const context = useContext(inputContext);
-  const { editNote } = context;
+  const { addData ,
+    setLoding} = context;
   const [data, setdata] = useState("");
   const [chat, setchat] = useState(0);
-
-  const handleChange = ( editor) => {
-    alert("not working")
+  // const [ignore,forceUpdate] = useReducer(x=>x+1,0)
+  const handleChange = (e, editor) => {
     let data = editor.getData();
     setdata(data);
   };
-   
+ 
+
   const [note, setnote] = useState({
-    projectName:"",
-    links:"",
+    projectName: "",
+    links: "",
     description: "",
-    sanitizedHtml: "",
-    generalTag: "",
-    markdown:ActiveCad==="markdown"?"":""
+    sanitizedHtml: data,
+    generalTag: searchTag,
+    markdown:""
   });
-  useEffect(() => {
-    setnote({
-      projectName: projectName?projectName:"",
-      links: youtubeLink?youtubeLink:"",
-      description: description?description:"",
-      sanitizedHtml: data?data:"",
-      generalTag: searchTag?searchTag:"",
-      markdown:ActiveCad==="markdown"?sanitizedHtml:""
-    });
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [content])
-  
   // projectName, youtubeLink,description,sanitizedHtml ,tag,generalTag
   const onChange = (e) => {
     setnote({ ...note, [e.target.name]: e.target.value });
   };
 
 
-  const handleClick = async(e) => {
-    let marked1
-    if  (ActiveCad==="markdown") {  
-    marked1 =await marked.parse(ref.current.value);
-  //  console.log(marked1);
-   }
-    editNote(id,note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag);
-
+  const handelsubmit = async(e) => {
     e.preventDefault();
+
+    setLoding(true)
+    // let marked1 =await marked.parse(ref.current.value);
+    // console.log(marked1);
+    // console.log("all is fine untill now");
+    let marked1
+     if  (ActiveCad==="markdown") {  
+     marked1 =await marked.parse(ref.current.value);
+    // console.log(marked1);
+    }
+    addData(note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag);
+
+    e.preventDefault();   
     setnote({
       projectName: "",
       links: "",
@@ -78,21 +63,17 @@ const ref = useRef(null);
       markdown:"",
       tag:""
     });
-    setSearchTag("Web development");
+   await setSearchTag("Web development");
     // console.log(data);
     setchat(0);
-    setdata("");
+    // console.log(ignore);
+     await setdata("");
+    //  console.log(data)
+    // forceUpdate()
   };
 
-
-  useEffect(() => {
-    getData(id)
-    setSearchTag(generalTag)
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
   return (
-    <div >
-      <div className="post">
+      <form onSubmit={(e)=> handelsubmit(e)} className="post">
         <div className="title post-inputs">
           <label htmlFor="title">Title</label>
           <input
@@ -174,11 +155,10 @@ const ref = useRef(null);
             )}
           </div>
         </div>
-        <button onClick={(e)=>handleClick(e)} className="post-btn">
-          {" "}
+        <button type="submit"  className="post-btn">
           Publish
         </button>
-      </div>
-    </div>
+       
+      </form>
   );
 }

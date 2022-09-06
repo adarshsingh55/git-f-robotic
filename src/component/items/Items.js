@@ -9,21 +9,23 @@ export default function Items(props)
   const { notes } = props;
 
   const context = useContext(noteContext);
+  const { userNotes ,setUserNotes } = context;
 
   const context1 = useContext(inputContext);
-
   const { deleteNote} = context1;
-  const { userNotes ,setUserNotes } = context;
+
 
   const handelClick =(id)=>{
     navigate(`/view/${id}`)
   }
+
   return (
     <div>
         <div  className="items le">
           <div  onClick={()=>handelClick(notes._id)} className="flex ">
         <img className='items-img' src="/img/code.jpeg" alt="sory" />
         <div className='items-content'>
+          {notes.tag?<div className="items-tag">{notes.tag}</div>:""}
           <div className="items-title">
         { notes.projectName}
         {/* <div className='item-icon'>
@@ -32,6 +34,8 @@ export default function Items(props)
             <div className='discription'>
               {notes.description}
             </div>
+            <div className='items-rdmore'>read more...</div>
+            <div className="items-date" style={{  marginRight:"2px"}}>{new Date(notes.date).toLocaleDateString()}</div>
         </div>
         </div>
         {props.show==="true"?

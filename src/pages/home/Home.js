@@ -1,6 +1,7 @@
 import React ,{useContext,useEffect}from 'react'
 import Items from '../../component/items/Items'
 import Search from '../../component/search/Search'
+import SearchTag from '../../component/search/SearchTag';
 // import Spiner from '../../component/spiner/Spiner';
 import Spiner2 from '../../component/spiner/Spiner2';
 import noteContext from "../../context/Nodecontext";
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <div>
        <Search/>
+       <SearchTag  notes={notes} placeholder="search Tag" />
        {Loding && <Spiner2/>}
       {
         notes.map((notes)=>{return<Items key={notes._id} notes={notes} show={false}/>

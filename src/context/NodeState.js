@@ -64,8 +64,10 @@ function NodeState(props) {
 
   // const host = "https://focusedguide.herokuapp.com";
 
-  // 1 get notes by general  tag------------------------------------------------------
+  // 1 get notes by general tag tag------------------------------------------------------
   const [notes, setNote] = useState([]);
+  const [Tag, setTag] = useState();
+  
   const [searchTag, setSearchTag] = useState("Web development");
   const getNotesByTag = async (serchTag) => {
     let url = `${host}/content/getbygeneraltag`;
@@ -75,6 +77,24 @@ function NodeState(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ generalTag: searchTag}),
+    });
+    const json = await response.json();
+    // console.log(json);
+    setNote(json.userContent);
+    setTag(json.tag)
+    setLoding(false)
+  };
+
+  // 1.1 get by tag----------------------------------------
+
+  const getbyTag = async (tag) => {
+    let url = `${host}/content/getbytag`;
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({tag: tag}),
     });
     const json = await response.json();
     // console.log(json);
@@ -133,7 +153,7 @@ function NodeState(props) {
     });
     const json = await response.json();
       setContent(json)
-      console.log(json);
+      // console.log(json);
   };
 
   //  return -----------------------------------------------------------
@@ -152,8 +172,10 @@ function NodeState(props) {
           setSearchTag,
           getData,
           content,
-          Loding
-          
+          Loding,
+          getbyTag,
+          setLoding,
+          Tag
         }}
       >
         {props.children}

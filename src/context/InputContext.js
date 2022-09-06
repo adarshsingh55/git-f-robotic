@@ -6,7 +6,6 @@ function InputContext(props) {
   // const token = localStorage.getItem("token");
   // const host = "http://localhost"
   const host = "https://focusedguide.herokuapp.com";
-  
   const [Loding, setLoding] = useState(false);
 
   const [List, setList] = useState([]);
@@ -82,7 +81,7 @@ function InputContext(props) {
       }),
     });
    let  json = await response.json();
-   console.log(json);
+  //  console.log(json);
     if (json.success) {
       // save the token and redirect
       showToast("success","Your data is published successfully successfully!");
@@ -112,7 +111,7 @@ function InputContext(props) {
       body: JSON.stringify({ name, email, password }),
     });
     const json = await response.json()
-    console.log(json);
+    // console.log(json);
     if (json.success) {
       // save the token and redirect
       showToast("success","you have signed successfully!");

@@ -48,12 +48,26 @@ function SearchTag(props) {
 
 
   const handelSubmit = (e) => {
+    console.log(e);
     setLoding(true);
     e.preventDefault();
-    getbyTag(ref.current.value);
+    getbyTag(ref.current.value.toLowerCase());
     // setfilteredData(setArr);
     clearinput()
   };
+
+
+  const handleClick =(value)=>{
+    ref.current.value = value
+    // getbyTag(ref.current.value.toLowerCase());
+    // handelSubmit()
+    setLoding(true);
+    // e.preventDefault();
+    getbyTag(ref.current.value.toLowerCase());
+    // setfilteredData(setArr);
+    clearinput()
+
+  }
 
   return (
     <div className="searchTag-search">
@@ -88,7 +102,7 @@ function SearchTag(props) {
           {filteredData.slice(0, 10).map((value, key) => {
             return (
               <div
-                onClick={()=>ref.current.value = value}
+                onClick={()=>handleClick(value)}
                 className="searchTag-resultItem"
                 key={key}
               >

@@ -77,7 +77,7 @@ function InputContext(props) {
         description,
         sanitizedHtml,
         generalTag,
-        tag,
+        tag:tag.toLowerCase()
       }),
     });
    let  json = await response.json();
@@ -197,7 +197,7 @@ function InputContext(props) {
         description,
         sanitizedHtml,  
         generalTag,
-        tag}),
+        tag:tag.toLowerCase()}),
     });
     let  json = await response.json();
       if (json.success) {

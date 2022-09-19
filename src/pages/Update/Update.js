@@ -23,7 +23,7 @@ const ref = useRef(null);
 
   const context1 = useContext(noteContext);
   const { searchTag, setSearchTag,content ,getData } = context1;
-  const {description,projectName,sanitizedHtml, generalTag,youtubeLink}=content.getData
+  const {description,projectName,sanitizedHtml, generalTag,youtubeLink,blogID, bloggerID,tag}=content.getData
   const context = useContext(inputContext);
   const { editNote } = context;
   const [data, setdata] = useState("");
@@ -41,7 +41,10 @@ const ref = useRef(null);
     description: "",
     sanitizedHtml: "",
     generalTag: "",
-    markdown:ActiveCad==="markdown"?"":""
+    markdown:ActiveCad==="markdown"?"":"",
+    tag:"",
+    blogID:"",
+    bloggerID:""
   });
   useEffect(() => {
     setnote({
@@ -50,7 +53,10 @@ const ref = useRef(null);
       description: description?description:"",
       sanitizedHtml: data?data:"",
       generalTag: searchTag?searchTag:"",
-      markdown:ActiveCad==="markdown"?sanitizedHtml:""
+      markdown:ActiveCad==="markdown"?sanitizedHtml:"",
+      tag:tag?tag:"",
+      blogID:blogID?blogID:"",
+      bloggerID:bloggerID?bloggerID:""
     });
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content])
@@ -67,7 +73,7 @@ const ref = useRef(null);
     marked1 =await marked.parse(ref.current.value);
   //  console.log(marked1);
    }
-    editNote(id,note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag);
+    editNote(id,note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag,blogID,bloggerID);
 
     e.preventDefault();
     setnote({
@@ -146,6 +152,7 @@ const ref = useRef(null);
           <span>content</span>
           <div>
             <button className="btn-50" onClick={() => setActiveCad("text")}>Text</button>
+            <button className="btn-50" onClick={() => setActiveCad("Blogger")}>Through blogger</button>
             <button  className="btn-50" onClick={() => setActiveCad("markdown") }>Markdown</button>
           </div>
           <div className="post-md">
@@ -160,6 +167,26 @@ const ref = useRef(null);
                   cols="90vw"
                   rows="20"
                 ></textarea>
+              </div>
+            )}
+              {ActiveCad === "Blogger" && (
+          <div className="post-blogger post-inputs">
+          <label htmlFor="links">your blog id</label>
+          <input
+            type="text"
+            name="blogID"
+            value={note.blogID}
+            onChange={onChange}
+            required
+            />
+          <label htmlFor="links">your blogger id</label>
+          <input
+            type="text"
+            name="bloggerID"
+            value={note.bloggerID}
+            onChange={onChange}
+            required
+          />
               </div>
             )}
             {ActiveCad === "text" && (

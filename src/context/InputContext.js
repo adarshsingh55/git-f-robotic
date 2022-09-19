@@ -4,8 +4,8 @@ import { useNavigate} from "react-router-dom";
 function InputContext(props) {
   const navigate = useNavigate();
   // const token = localStorage.getItem("token");
-  // const host = "http://localhost"
-  const host = "https://focusedguide.herokuapp.com";
+  const host = "http://localhost"
+  // const host = "https://focusedguide.herokuapp.com";
   const [Loding, setLoding] = useState(false);
 
   const [List, setList] = useState([]);
@@ -54,14 +54,39 @@ function InputContext(props) {
   };
 
   // 4  post request data(/content/postdata)--------------------------------------
+  const [dataToSend, setdataToSend] = useState({});
   const addData = async (
     projectName,
     youtubeLink,
     description,
     sanitizedHtml,
     generalTag,
-    tag
+    tag,
+    blogID,
+    bloggerID
+
   ) => {
+    
+   if (blogID===""){
+    setdataToSend({
+      projectName,
+      youtubeLink,
+      description,
+      sanitizedHtml,
+      generalTag,
+      tag:tag.toLowerCase()
+    })}else{
+       setdataToSend({
+        projectName,
+        youtubeLink,
+        description,
+        sanitizedHtml,
+        generalTag,
+        tag:tag.toLowerCase(),
+        blogID,
+        bloggerID
+      })
+    }
     // api call
     let url = `${host}/content/postdata`;
     let response = await fetch(url, {
@@ -69,16 +94,8 @@ function InputContext(props) {
       headers: {
         "Content-Type": "application/json",
         "auth-token":localStorage.getItem('token'),
-        // "auth-token": token,
       },
-      body: JSON.stringify({
-        projectName,
-        youtubeLink,
-        description,
-        sanitizedHtml,
-        generalTag,
-        tag:tag.toLowerCase()
-      }),
+      body: JSON.stringify(dataToSend),
     });
    let  json = await response.json();
   //  console.log(json);

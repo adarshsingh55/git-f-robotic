@@ -14,8 +14,8 @@ function NodeState(props) {
   
 
   // const token =localStorage.getItem('token')
-  // const host = "http://localhost"
-  const host = "https://focusedguide.herokuapp.com"
+  const host = "http://localhost"
+  // const host = "https://focusedguide.herokuapp.com"
   // 0 Alert fountion -------------------------------------
   // const [List, setList] = useState([]);
   // // console.log(List);

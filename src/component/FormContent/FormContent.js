@@ -32,7 +32,9 @@ const ref = useRef(null);
     description: "",
     sanitizedHtml: data,
     generalTag: searchTag,
-    markdown:""
+    markdown:"",
+    blogID:"",
+    bloggerID:""
   });
   // projectName, youtubeLink,description,sanitizedHtml ,tag,generalTag
   const onChange = (e) => {
@@ -47,12 +49,15 @@ const ref = useRef(null);
     // let marked1 =await marked.parse(ref.current.value);
     // console.log(marked1);
     // console.log("all is fine untill now");
+
+
     let marked1
      if  (ActiveCad==="markdown") {  
      marked1 =await marked.parse(ref.current.value);
     // console.log(marked1);
     }
-    addData(note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag);
+    addData(note.projectName, note.links, note.description,ActiveCad==="text"?data:marked1, searchTag,note.tag, note.blogID,
+      note.bloggerID);
 
     e.preventDefault();   
     setnote({
@@ -61,7 +66,9 @@ const ref = useRef(null);
       description: "",
       generalTag: "Web development",
       markdown:"",
-      tag:""
+      tag:"",
+      blogID:"",
+      bloggerID:""
     });
    await setSearchTag("Web development");
     // console.log(data);
@@ -127,6 +134,7 @@ const ref = useRef(null);
           <span>content</span>
           <div>
             <button className="btn-50" onClick={() => setActiveCad("text")}>Text</button>
+            <button className="btn-50" onClick={() => setActiveCad("Blogger")}>Through blogger</button>
             <button  className="btn-50" onClick={() => setActiveCad("markdown") }>Markdown</button>
           </div>
           <div className="post-md">
@@ -143,6 +151,27 @@ const ref = useRef(null);
                 ></textarea>
               </div>
             )}
+            {ActiveCad === "Blogger" && (
+              <div className="post-blogger post-inputs">
+          <label htmlFor="links">your blog id</label>
+          <input
+            type="text"
+            name="blogID"
+            value={note.blogID}
+            onChange={onChange}
+            required
+            />
+          <label htmlFor="links">your blogger id</label>
+          <input
+            type="text"
+            name="bloggerID"
+            value={note.bloggerID}
+            onChange={onChange}
+            required
+          />
+              </div>
+            )}
+
             {ActiveCad === "text" && (
               <div>
                 <CKEditor

@@ -5,7 +5,7 @@ function InputContext(props) {
   const navigate = useNavigate();
   // const token = localStorage.getItem("token");
   // const host = "http://localhost"
-  const host = "https://focusedguide.herokuapp.com";
+  const host = "https://focusedguide.cyclic.app";
   const [Loding, setLoding] = useState(false);
 
   const [List, setList] = useState([]);

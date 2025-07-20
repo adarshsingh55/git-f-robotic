@@ -14,8 +14,8 @@ function NodeState(props) {
   
 
   // const token =localStorage.getItem('token')
-  const host = "http://localhost"
-  // const host = "https://focusedguide.cyclic.app"
+  // const host = "http://localhost"
+ const host = "https://git-f-robotic-back-2.onrender.com";
   // 0 Alert fountion -------------------------------------
   // const [List, setList] = useState([]);
   // // console.log(List);

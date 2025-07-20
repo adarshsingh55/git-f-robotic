@@ -11,14 +11,14 @@ import "./Home.css"
 export default function Home() {
   const context = useContext(noteContext);
   const { notes,Loding, getNotesByTag ,searchTag} = context;
-  
-  
+
   
   useEffect(() => {
     getNotesByTag(searchTag)
       // eslint-disable-next-line react-hooks/exhaustive-deps
   },[searchTag]);
-
+  
+  
   return (
     <div>
        <Search/>

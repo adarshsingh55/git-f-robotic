@@ -23,7 +23,7 @@ import Alert2 from "./component/alert/Alert2";
 function App() {
   return (
     <>
-          <BrowserRouter>
+    <BrowserRouter>
       <NodeState>
         <InputContext>
             <TpNavbar />
@@ -32,7 +32,7 @@ function App() {
               <Alert2 position="bottom-right"/>
               <Routes>
                 <Route>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Home />}  />
                   <Route path="/post" element={<Post />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/view/:id" element={<View />} />

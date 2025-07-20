@@ -1,5 +1,5 @@
 import React from "react";
-import noteContext from "./Nodecontext";
+import noteContext from "./Nodecontext"
 import { useState } from "react";
 
 function NodeState(props) {
@@ -14,8 +14,8 @@ function NodeState(props) {
   
 
   // const token =localStorage.getItem('token')
-  // const host = "http://localhost"
-  const host = "https://focusedguide.cyclic.app"
+  const host = "http://localhost"
+  // const host = "https://focusedguide.cyclic.app"
   // 0 Alert fountion -------------------------------------
   // const [List, setList] = useState([]);
   // // console.log(List);
